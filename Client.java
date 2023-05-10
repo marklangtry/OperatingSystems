@@ -1,11 +1,12 @@
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
         try {
             // Create a socket and connect to the server
-            Socket socket = new Socket("SERVER_IP_ADDRESS", 8888);
+            Socket socket = new Socket("localhost", 8888);
             
             // Create input and output streams for communication
             InputStream inputStream = socket.getInputStream();
@@ -17,13 +18,13 @@ public class Client {
             // Create a PrintWriter to send data to the server
             PrintWriter writer = new PrintWriter(outputStream, true);
             
-            // Send data to the server
-            writer.println("Hello from the client!");
+            Scanner in = new Scanner(System.in);
             
-            // Read the server's response
+            System.out.println("Enter a message: ");
+            String ClientInput = in.nextLine();
+            writer.println(ClientInput);
             String responseFromServer = reader.readLine();
             System.out.println("Received from server: " + responseFromServer);
-            
             // Close the connections
             writer.close();
             reader.close();

@@ -21,14 +21,18 @@ public class Server {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             
             // Read data from the client
-            String dataFromClient = reader.readLine();
-            System.out.println("Received from client: " + dataFromClient);
-            
-            // Create a PrintWriter to send data to the client
-            PrintWriter writer = new PrintWriter(outputStream, true);
-            
+            String str = reader.readLine();
+            System.out.println("Received from client: " + str);
+            String nstr = "";
+            char ch;
+            for (int i=0; i<str.length(); i++)
+            {
+              ch= str.charAt(i); //extracts each character
+              nstr= ch+nstr; //adds each character in front of the existing string
+            }
             // Send a response to the client
-            writer.println("Hello from the server!");
+            PrintWriter writer = new PrintWriter(outputStream, true);
+            writer.println(nstr);
             
             // Close the connections
             writer.close();
