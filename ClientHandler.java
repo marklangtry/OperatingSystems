@@ -1,8 +1,7 @@
-package OperatingSystems;
+
 
 import java.io.*;
 import java.net.*;
-import java.util.LinkedList;
 import java.util.Queue;
 
 public class ClientHandler implements Runnable {
@@ -34,6 +33,17 @@ public class ClientHandler implements Runnable {
                     // Retrieve and send the stored messages to the client
                     writer.println(queue);
                 } 
+                else if (dataFromClient.equalsIgnoreCase("average")) {
+                    // Retrieve and send the stored messages to the client
+                    int totalLength = getCount(queue);
+                    int avgLength = totalLength/(queue.size());
+                    writer.println(avgLength);
+                } 
+                else if (dataFromClient.equalsIgnoreCase("count")) {
+                    // Retrieve and send the stored messages to the client
+                    int totalLength = getCount(queue);
+                    writer.println(totalLength);
+                } 
                 else if(dataFromClient.equalsIgnoreCase("translate")){
                     
                     writer.println(queue);
@@ -47,18 +57,24 @@ public class ClientHandler implements Runnable {
                         queue.add(dataFromClient);
                         writer.println("Message received by the server");
                     }
-
-                    // Send a response to the client
                     
                 }
             }
             writer.close();
             reader.close();
             
-
-            // Close the connections
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    int getCount(Queue<String> queue){
+        Queue<String> copy = queue;
+        int count = 0;
+        while(copy.size()>0){
+            String currentElement = copy.poll();
+            count += currentElement.length();
+        }
+        return count;
+    }
+
 }
