@@ -11,12 +11,12 @@ public class PigLatin {
      
     static String pigLatin(String word) {
         String newString = "";
+        // If a word starts with a vowel add the word "way" at the end of the word
         if (isVowel(word.charAt(0))) {
             return word + "way";
-            // If a word starts with a vowel add the word "way" at the end of the word.
-            // Example: Awesome = Awesome +way = Awesomeway
         }
 
+        // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
         else if (isVowel(word.charAt(1))) {
             char firstLetter = word.charAt(0);
             firstLetter = Character.toLowerCase(firstLetter);
@@ -25,10 +25,9 @@ public class PigLatin {
             }
             newString = newString + firstLetter + "ay";
             return newString;
-            // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay."
-            // Example: Happy = appyh + ay = appyhay
         }
 
+        // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
         else{
             char firstLetter = word.charAt(0);
             char secondLetter = word.charAt(1);
@@ -38,8 +37,6 @@ public class PigLatin {
             }
             newString = newString + firstLetter + secondLetter + "ay";
             return newString;
-        // If a word starts with two consonants move the two consonants to the end of the word and add "ay."
-        // Example: Child = Ildch + ay = Ildchay
         }
     }
 
