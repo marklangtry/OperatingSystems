@@ -1,6 +1,3 @@
-package ChatServer;
-
-
 import java.io.*;
 import java.net.*;
 
