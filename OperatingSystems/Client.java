@@ -22,7 +22,7 @@ public class Client {
             
             Scanner in = new Scanner(System.in);
             boolean running = true;
-            while(running = true){
+            while(running){
                 System.out.println("Enter a message: ");
                 String ClientInput = in.nextLine();
                 writer.println(ClientInput);
