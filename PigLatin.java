@@ -4,40 +4,61 @@ public class PigLatin {
         // Awesome
         // Happy
         // Plan
-        String str = pigLatin("Plan");
-        System.out.print(str);
+        // pigLatin("Plan");
+        pigLatin("Awesome Happy Plan");
     }
     
      
-    static String pigLatin(String word) {
-        String newString = "";
-        // If a word starts with a vowel add the word "way" at the end of the word
-        if (isVowel(word.charAt(0))) {
-            return word + "way";
-        }
+    static void pigLatin(String input) {
 
-        // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
-        else if (isVowel(word.charAt(1))) {
-            char firstLetter = word.charAt(0);
-            firstLetter = Character.toLowerCase(firstLetter);
-            for (int i = 1; i <= word.length()-1; i++) {
-                newString = newString + word.charAt(i);
-            }
-            newString = newString + firstLetter + "ay";
-            return newString;
-        }
+        String[] words = input.split("\\s+");
+        String concatenatedOutput = "";
 
-        // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
-        else{
-            char firstLetter = word.charAt(0);
-            char secondLetter = word.charAt(1);
-            firstLetter = Character.toLowerCase(firstLetter);
-            for (int i = 2; i <= word.length()-1; i++) {
-                newString = newString + word.charAt(i);
+        for (String word : words) {
+            // System.out.println("-----------------------------------");
+            // System.out.println(word);
+            // System.out.println("-----------------------------------");
+
+            String newString = "";
+            // If a word starts with a vowel add the word "way" at the end of the word
+            if (isVowel(word.charAt(0))) {
+                char firstLetter = word.charAt(0);
+                firstLetter = Character.toLowerCase(firstLetter);
+                for (int i = 1; i <= word.length()-1; i++) {
+                    newString = newString + word.charAt(i);
+                }
+                newString = firstLetter + newString + "way";
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
             }
-            newString = newString + firstLetter + secondLetter + "ay";
-            return newString;
+
+            // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
+            else if (isVowel(word.charAt(1))) {
+                char firstLetter = word.charAt(0);
+                firstLetter = Character.toLowerCase(firstLetter);
+                for (int i = 1; i <= word.length()-1; i++) {
+                    newString = newString + word.charAt(i);
+                }
+                newString = newString + firstLetter + "ay";
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
+            }
+
+            // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
+            else{
+                char firstLetter = word.charAt(0);
+                char secondLetter = word.charAt(1);
+                firstLetter = Character.toLowerCase(firstLetter);
+                for (int i = 2; i <= word.length()-1; i++) {
+                    newString = newString + word.charAt(i);
+                }
+                newString = newString + firstLetter + secondLetter + "ay";
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
+            }
+            concatenatedOutput += newString + " ";
         }
+        System.out.println(concatenatedOutput);
     }
 
 

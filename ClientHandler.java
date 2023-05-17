@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.net.*;
 import java.util.LinkedList;
@@ -60,7 +59,7 @@ public class ClientHandler implements Runnable {
                         queue.add(dataFromClient);
                         writer.println("Message received by the server");
                     }
-                    
+                    // Send a response to the client
                 }
             }
             writer.close();
