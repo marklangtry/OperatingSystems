@@ -1,12 +1,12 @@
 
 public class PigLatin {
-    public static void main(String[] args) {
-        // Awesome
-        // Happy
-        // Plan
-        // pigLatin("Plan");
-        pigLatin("Awesome Happy Plan");
-    }
+    // public static void main(String[] args) {
+    //     // Awesome
+    //     // Happy
+    //     // Plan
+    //     // pigLatin("Plan");
+    //     pigLatin("Awesome Happy Plan");
+    // }
     
      
     static void pigLatin(String input) {
