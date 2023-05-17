@@ -34,6 +34,9 @@ public class Client {
                     running = false;
                 }
             }
+                
+                
+            
             // Close the connections
             writer.close();
             reader.close();
