@@ -32,26 +32,33 @@ public class ClientHandler implements Runnable {
                 System.out.println("Received from client: " + dataFromClient);
                 if (dataFromClient.equalsIgnoreCase("retrieve")) {
                     // Retrieve and send the stored messages to the client
+                    // for (String str : queue) {
+                    //     writer.println(str);
+                    // }
                     writer.println(queue);
                 } 
                 else if (dataFromClient.equalsIgnoreCase("average")) {
-                    // Retrieve and send the stored messages to the client
+                    // Gets the average number of characters in a message
                     int totalLength = getCount(queue);
                     int avgLength = totalLength/(queue.size());
                     writer.println(avgLength);
                 } 
                 else if (dataFromClient.equalsIgnoreCase("count")) {
+                    // Gets the total number of messages
                     writer.println(queue.size());
                 }
                 else if (dataFromClient.equalsIgnoreCase("characters")) {
+                    // Gets the total number of characters in a message
                     int totalLength = getCount(queue);
                     writer.println(totalLength);
                 } 
                 else if(dataFromClient.equalsIgnoreCase("translate")){
+                    // Translated the messages into Pig Latin and returns the translated queue
                     Queue<String> translatedMessage = translate(queue);
                     writer.println(translatedMessage);
                 }
                 else if(dataFromClient.equalsIgnoreCase("end")){
+                    // Ends the client-server communication on the clients side
                     running = false;
                 }
                 else {
@@ -78,11 +85,11 @@ public class ClientHandler implements Runnable {
         return totalCharacters;
     }
     Queue<String> translate(Queue<String> queue){
-        Queue<String> newQueue = new LinkedList<>();
+        Queue<String> translatedQueue = new LinkedList<>();
         for (String str : queue) {
-            newQueue.add(pigLatin(str));
+            translatedQueue.add(pigLatin(str));
         }
-        return newQueue;
+        return translatedQueue;
     }
 
     String pigLatin(String word) {
