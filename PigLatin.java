@@ -15,9 +15,9 @@ public class PigLatin {
         String concatenatedOutput = "";
 
         for (String word : words) {
-            System.out.println("-----------------------------------");
-            System.out.println(word);
-            System.out.println("-----------------------------------");
+            // System.out.println("-----------------------------------");
+            // System.out.println(word);
+            // System.out.println("-----------------------------------");
 
             String newString = "";
             // If a word starts with a vowel add the word "way" at the end of the word
@@ -28,8 +28,8 @@ public class PigLatin {
                     newString = newString + word.charAt(i);
                 }
                 newString = firstLetter + newString + "way";
-                System.out.println(newString);
-                System.out.println("-----------------------------------");
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
             }
 
             // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
@@ -40,8 +40,8 @@ public class PigLatin {
                     newString = newString + word.charAt(i);
                 }
                 newString = newString + firstLetter + "ay";
-                System.out.println(newString);
-                System.out.println("-----------------------------------");
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
             }
 
             // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
@@ -53,12 +53,12 @@ public class PigLatin {
                     newString = newString + word.charAt(i);
                 }
                 newString = newString + firstLetter + secondLetter + "ay";
-                System.out.println(newString);
-                System.out.println("-----------------------------------");
+                // System.out.println(newString);
+                // System.out.println("-----------------------------------");
             }
             concatenatedOutput += newString + " ";
-            System.out.println(concatenatedOutput);
         }
+        System.out.println(concatenatedOutput);
     }
 
 
