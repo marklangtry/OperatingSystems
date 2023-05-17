@@ -1,4 +1,5 @@
 
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
@@ -26,7 +27,12 @@ public class Client {
                 String ClientInput = in.nextLine();
                 writer.println(ClientInput);
                 String responseFromServer = reader.readLine();
-                System.out.println("Received from server: " + responseFromServer);
+                if(responseFromServer != null){
+                    System.out.println("Received from server: " + responseFromServer);
+                }
+                else{
+                    running = false;
+                }
             }
             // Close the connections
             writer.close();
