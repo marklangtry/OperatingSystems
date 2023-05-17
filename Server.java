@@ -18,6 +18,7 @@ public class Server {
             while (true) {
                 // Accept incoming client connections
                 Socket clientSocket = serverSocket.accept();
+                
                 // Submit the client connection to the thread pool for handling
                 threadPool.submit(new ClientHandler(clientSocket,queue));
             }
