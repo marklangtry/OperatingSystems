@@ -44,8 +44,7 @@ public class ClientHandler implements Runnable {
                     writer.println(totalLength());
                 } 
                 else if(dataFromClient.equalsIgnoreCase("translate")){
-                    Queue<String> translatedMessage = translate(queue);
-                    writer.println(translatedMessage);
+                    writer.println(translateFunction());
                 }
                 else if(dataFromClient.equalsIgnoreCase("end")){
                     running = false;
@@ -76,6 +75,10 @@ public class ClientHandler implements Runnable {
     int totalLength() {
         return getCount(queue);
     }  
+
+    Queue<String> translateFunction() {
+        return translate(queue);
+    }
 
     int getCount(Queue<String> queue){
         int totalCharacters = 0;
