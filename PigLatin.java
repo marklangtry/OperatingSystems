@@ -4,39 +4,51 @@ public class PigLatin {
         // Awesome
         // Happy
         // Plan
-        String str = pigLatin("Plan");
-        System.out.print(str);
+        // pigLatin("Plan");
+        pigLatin("Awesome Happy Plan");
     }
     
      
-    static String pigLatin(String word) {
+    static void pigLatin(String input) {
+
+        String[] words = input.split("\\s+");
+
+        for (String word : words) {
+            System.out.println(word);
+        
+        System.out.println("-----------------------------------");
+
         String newString = "";
         // If a word starts with a vowel add the word "way" at the end of the word
-        if (isVowel(word.charAt(0))) {
-            return word + "way";
+        if (isVowel(input.charAt(0))) {
+            System.out.println(input + "way");
+            System.out.println("-----------------------------------");
         }
 
         // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
-        else if (isVowel(word.charAt(1))) {
-            char firstLetter = word.charAt(0);
+        else if (isVowel(input.charAt(1))) {
+            char firstLetter = input.charAt(0);
             firstLetter = Character.toLowerCase(firstLetter);
-            for (int i = 1; i <= word.length()-1; i++) {
-                newString = newString + word.charAt(i);
+            for (int i = 1; i <= input.length()-1; i++) {
+                newString = newString + input.charAt(i);
             }
             newString = newString + firstLetter + "ay";
-            return newString;
+            System.out.println(newString);
+            System.out.println("-----------------------------------");
         }
 
         // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
         else{
-            char firstLetter = word.charAt(0);
-            char secondLetter = word.charAt(1);
+            char firstLetter = input.charAt(0);
+            char secondLetter = input.charAt(1);
             firstLetter = Character.toLowerCase(firstLetter);
-            for (int i = 2; i <= word.length()-1; i++) {
-                newString = newString + word.charAt(i);
+            for (int i = 2; i <= input.length()-1; i++) {
+                newString = newString + input.charAt(i);
             }
             newString = newString + firstLetter + secondLetter + "ay";
-            return newString;
+            System.out.println(newString);
+            System.out.println("-----------------------------------");
+        }
         }
     }
 
