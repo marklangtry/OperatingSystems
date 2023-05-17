@@ -41,8 +41,7 @@ public class ClientHandler implements Runnable {
                     writer.println(queue.size());
                 }
                 else if (dataFromClient.equalsIgnoreCase("characters")) {
-                    int totalLength = getCount(queue);
-                    writer.println(totalLength);
+                    writer.println(totalLength());
                 } 
                 else if(dataFromClient.equalsIgnoreCase("translate")){
                     Queue<String> translatedMessage = translate(queue);
@@ -73,6 +72,10 @@ public class ClientHandler implements Runnable {
         int avgLength = totalLength/(queue.size());     
         return avgLength;
     }
+
+    int totalLength() {
+        return getCount(queue);
+    }  
 
     int getCount(Queue<String> queue){
         int totalCharacters = 0;
