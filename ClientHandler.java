@@ -2,6 +2,7 @@
 
 import java.io.*;
 import java.net.*;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class ClientHandler implements Runnable {
@@ -40,13 +41,15 @@ public class ClientHandler implements Runnable {
                     writer.println(avgLength);
                 } 
                 else if (dataFromClient.equalsIgnoreCase("count")) {
-                    // Retrieve and send the stored messages to the client
+                    writer.println(queue.size());
+                }
+                else if (dataFromClient.equalsIgnoreCase("characters")) {
                     int totalLength = getCount(queue);
                     writer.println(totalLength);
                 } 
                 else if(dataFromClient.equalsIgnoreCase("translate")){
-                    
-                    writer.println(queue);
+                    Queue<String> translatedMessage = translate(queue);
+                    writer.println(translatedMessage);
                 }
                 else if(dataFromClient.equalsIgnoreCase("end")){
                     running = false;
@@ -68,13 +71,56 @@ public class ClientHandler implements Runnable {
         }
     }
     int getCount(Queue<String> queue){
-        Queue<String> copy = queue;
-        int count = 0;
-        while(copy.size()>0){
-            String currentElement = copy.poll();
-            count += currentElement.length();
+        int totalCharacters = 0;
+        for (String str : queue) {
+            totalCharacters += str.length();
         }
-        return count;
+        return totalCharacters;
     }
+    Queue<String> translate(Queue<String> queue){
+        Queue<String> newQueue = new LinkedList<>();
+        for (String str : queue) {
+            newQueue.add(pigLatin(str));
+        }
+        return newQueue;
+    }
+
+    String pigLatin(String word) {
+        String newString = "";
+        // If a word starts with a vowel add the word "way" at the end of the word
+        if (isVowel(word.charAt(0))) {
+            return word + "way";
+        }
+
+        // If a word starts with a consonant and a vowel, put the first letter of the word at the end of the word and add "ay"
+        else if (isVowel(word.charAt(1))) {
+            char firstLetter = word.charAt(0);
+            firstLetter = Character.toLowerCase(firstLetter);
+            for (int i = 1; i <= word.length()-1; i++) {
+                newString = newString + word.charAt(i);
+            }
+            newString = newString + firstLetter + "ay";
+            return newString;
+        }
+
+        // If a word starts with two consonants move the two consonants to the end of the word and add "ay"
+        else{
+            char firstLetter = word.charAt(0);
+            char secondLetter = word.charAt(1);
+            firstLetter = Character.toLowerCase(firstLetter);
+            for (int i = 2; i <= word.length()-1; i++) {
+                newString = newString + word.charAt(i);
+            }
+            newString = newString + firstLetter + secondLetter + "ay";
+            return newString;
+        }
+    }
+
+
+    // Check for vowel
+    boolean isVowel(char c) {
+        return (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' ||c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
+    }
+
 
 }
