@@ -147,7 +147,7 @@ public class ClientHandler implements Runnable {
     }
 
     // Check for vowel
-    boolean isVowel(char c) {
+    static boolean isVowel(char c) {
         return (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U' ||c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
     }
 
