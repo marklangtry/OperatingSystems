@@ -37,7 +37,6 @@ public class ClientHandler implements Runnable {
                     writer.println(queue);
                 } 
                 else if (dataFromClient.equalsIgnoreCase("average")) {
-                    // Retrieve and send the stored messages to the client
                     // Gets the average number of characters in a message
                     writer.println(average());
                 } 
@@ -61,6 +60,7 @@ public class ClientHandler implements Runnable {
                     // Store the message in the queue
                     synchronized (queue) {
                         queue.add(dataFromClient);
+                        // Acknowledge message recieved
                         writer.println("Message received by the server");
                     }
                     
