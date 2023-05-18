@@ -1,6 +1,6 @@
 # OperatingSystems
 **Mark Langtry and Darragh Grealish, OS client-server project using PigLatin.**
-To use the client-server program you must
+</br>To use the client-server program you must
 1) Run an instance of the server class</br>
 2) Run up to 5 instances of the client class.</br>
 3) Input messages in the CLI for the clients</br>
