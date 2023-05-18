@@ -9,4 +9,4 @@ To use the client-server program you must
 </br>
 To run the tests
 1) Run an instance of the server class</br>
-2) Run the test class</br>
+2) Run the test class
