@@ -1,19 +1,46 @@
 import static org.junit.Assert.assertEquals;
 
-import java.net.ServerSocket;
+
+import java.io.BufferedReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.net.Socket;
-import java.util.LinkedList;
-import java.util.Queue;
 
 import org.junit.Test;
 
 public class ClientHandlerTest {
-    // ServerSocket serverSocket = new ServerSocket(8888);
-    // Queue<String> queue = new LinkedList<>();
-    // // Accept incoming client connections
-    // Socket clientSocket = serverSocket.accept();
-    // // Submit the client connection to the thread pool for handling
-    // ClientHandler test = new ClientHandler(clientSocket, queue);
+
+    // Testing both the Translate function and the Client and server communicate with each other
+    @Test
+    public void testPigLatin() {
+    try {
+        // Create a socket and connect to the server
+        Socket socket = new Socket("localhost", 8888);
+        
+        // Create input and output streams for communication
+        InputStream inputStream = socket.getInputStream();
+        OutputStream outputStream = socket.getOutputStream();
+        
+        // Create a BufferedReader to read data from the server
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        
+        // Create a PrintWriter to send data to the server
+        PrintWriter writer = new PrintWriter(outputStream, true);
+        String testString = "plan";
+        writer.println(testString);
+        writer.println("translate");
+        String translatedResult = reader.readLine();
+        assertEquals("[anplay]", translatedResult);
+        writer.close();
+        reader.close();
+        socket.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     @Test
     public void testIsVowel() {
@@ -25,49 +52,4 @@ public class ClientHandlerTest {
         assertEquals(false, ClientHandler.isVowel('z'));
         assertEquals(false, ClientHandler.isVowel('1'));
     }
-
-    // @Test
-    // public void testPigLatin() {
-    //     assertEquals("anplay", ClientHandler.pigLatin("plan"));
-    // }
-
-
-    // @Test
-    // public void testAddition() {
-    //     int result = ClientHandler.add(2, 3);
-    //     assertEquals(5, result);
-    // }
 }
-
-
-
-
-// <dependency>
-//     <groupId>org.junit.jupiter</groupId>
-//     <artifactId>junit-jupiter-api</artifactId>
-//     <version>5.9.1</version>
-//     <scope>test</scope>
-// </dependency>
-// <dependency>
-//     <groupId>org.junit.jupiter</groupId>
-//     <artifactId>junit-jupiter-engine</artifactId>
-//     <version>5.9.1</version>
-//     <scope>test</scope>
-// </dependency>
-
-
-
-
-
-// <dependency>
-//     <groupId>org.junit.jupiter</groupId>
-//     <artifactId>junit-jupiter-api</artifactId>
-//     <version>5.9.1</version>
-//     <scope>test</scope>
-// </dependency>
-// <dependency>
-//     <groupId>org.junit.jupiter</groupId>
-//     <artifactId>junit-jupiter-engine</artifactId>
-//     <version>5.9.1</version>
-//     <scope>test</scope>
-// </dependency>
