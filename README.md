@@ -8,5 +8,5 @@
 5) End the client program by typing "end"</br>
 </br>
 To run the tests
-1) Run an instance of the server class</br>
+1) Run an instance of the server class </br>
 2) Run the test class
