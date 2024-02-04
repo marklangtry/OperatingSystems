@@ -34,7 +34,7 @@ public class Client {
                 }
             }
                 
-            // Close the connections blah blah bla
+            // Close the connections blah blah bla bl
             writer.close();
             reader.close();
             socket.close();
